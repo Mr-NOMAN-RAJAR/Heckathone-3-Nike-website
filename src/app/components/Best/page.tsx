@@ -19,7 +19,7 @@ export default function ProductSection() {
           />
           <div className="mt-4">
             <h3 className="text-lg font-medium">Nike Air Max Pulse</h3>
-            <p className="text-sm text-gray-500">Women's Shoes</p>
+            <p className="text-sm text-gray-500">Women&apos;s Shoes</p>
             <p className="text-xl font-semibold mt-2">₹13,995</p>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function ProductSection() {
           />
           <div className="mt-4">
             <h3 className="text-lg font-medium">Nike Air Max Pulse</h3>
-            <p className="text-sm text-gray-500">Men's Shoes</p>
+            <p className="text-sm text-gray-500">Men&apos;s Shoes</p>
             <p className="text-xl font-semibold mt-2">₹13,995</p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function ProductSection() {
           />
           <div className="mt-4">
             <h3 className="text-lg font-medium">Nike Air Max 97 SE</h3>
-            <p className="text-sm text-gray-500">Men's Shoes</p>
+            <p className="text-sm text-gray-500">Men&apos;s Shoes</p>
             <p className="text-xl font-semibold mt-2">₹16,995</p>
           </div>
         </div>
