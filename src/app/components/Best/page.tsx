@@ -11,7 +11,7 @@ export default function ProductSection() {
         {/* Product Card 1 */}
         <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
           <Image
-            src="/best/b1.png"
+            src="/Best/b1.png"
             alt="Nike Air Max Pulse"
             width={400}
             height={300}
@@ -27,7 +27,7 @@ export default function ProductSection() {
         {/* Product Card 2 */}
         <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
           <Image
-            src="/best/b2.png"
+            src="/Best/b2.png"
             alt="Nike Air Max Pulse"
             width={400}
             height={300}
@@ -43,7 +43,7 @@ export default function ProductSection() {
         {/* Product Card 3 */}
         <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
           <Image
-            src="/best/b3.png"
+            src="/Best/b3.png"
             alt="Nike Air Max 97 SE"
             width={400}
             height={300}
