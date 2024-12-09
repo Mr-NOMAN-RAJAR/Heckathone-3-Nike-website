@@ -7,7 +7,7 @@ export default function Nav() {
     <header className="">
       {/* Top bar */}
       <div className="bg-[#fafafa] flex justify-between items-center px-6 py-2 md:text-[11px] sm:text-[9px] text-[8px] font-medium text-gray-500">
-        <Image src={"/logo1.png"} alt={""} width={24} height={24} />
+        <Image src={"/logo1.png"} alt={"logo"} width={24} height={24} />
         <div>
           <p className="text-black text-sm bg-white">Made by NOMAN</p>
         </div>

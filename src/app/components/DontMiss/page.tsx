@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function FlightEssentialsSection() {
   return (
     <section className="relative w-full bg-white py-16 px-4">
@@ -5,14 +7,16 @@ export default function FlightEssentialsSection() {
       <div className="relative z-10 text-center mt-8 sm:mt-12">
         {/* "Don't Miss" Heading */}
         <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">
-          Don't Miss
+          Don&apos;t Miss
         </h2>
 
         {/* Full-Width Image Section */}
         <div className="w-full mb-8">
-          <img
+          <Image
             src="/DontMiss.png"
             alt="Flight Essentials"
+            width={1200} 
+            height={800} 
             className="w-full h-auto object-cover rounded-lg shadow-xl"
           />
         </div>
