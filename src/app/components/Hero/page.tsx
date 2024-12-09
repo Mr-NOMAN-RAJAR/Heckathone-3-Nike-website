@@ -26,8 +26,12 @@ export default function Hero() {
           max.
         </p>
         <div className="flex justify-center items-center gap-3">
-          <button className="bg-black text-white rounded-full py-2 px-4">Notify Me</button>
-          <button className="bg-black text-white rounded-full py-2 px-4">Shop Air Max</button>
+          <button className="bg-black text-white rounded-full py-2 px-4">
+            Notify Me
+          </button>
+          <button className="bg-black text-white rounded-full py-2 px-4">
+            Shop Air Max
+          </button>
         </div>
       </div>
     </section>
