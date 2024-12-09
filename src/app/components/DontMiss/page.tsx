@@ -1,59 +1,41 @@
-import Image from 'next/image';
-
-export default function DontMissSection() {
+export default function FlightEssentialsSection() {
   return (
-    <section className="w-full py-8 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Section Title */}
-        <h2 className="text-lg font-medium text-gray-800 mb-4">Don&#39;t Miss</h2>
+    <section className="relative w-full bg-white py-16 px-4">
+      {/* Content Section */}
+      <div className="relative z-10 text-center mt-8 sm:mt-12">
+        {/* "Don't Miss" Heading */}
+        <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">
+          Don't Miss
+        </h2>
 
-        {/* Content Box */}
-        <div className="flex flex-col lg:flex-row gap-4 border border-red-400 p-4 rounded-md">
-          {/* Images */}
-          <div className="lg:w-2/3 flex gap-4">
-            <Image
-              src="/path-to-full-image.jpg"
-              alt="Full Look"
-              width={600}
-              height={300}
-              className="w-full h-[300px] object-cover rounded-md"
-            />
-            <Image
-              src="/path-to-portrait-image.jpg"
-              alt="Portrait Look"
-              width={200}
-              height={300}
-              className="w-[200px] h-[300px] object-cover rounded-md hidden lg:block"
-            />
-          </div>
+        {/* Full-Width Image Section */}
+        <div className="w-full mb-8">
+          <img
+            src="/DontMiss.png"
+            alt="Flight Essentials"
+            className="w-full h-auto object-cover rounded-lg shadow-xl"
+          />
+        </div>
 
-          {/* Text Content */}
-          <div className="lg:w-1/3 flex flex-col justify-between">
-            {/* Brand Information */}
-            <div className="flex justify-between text-sm font-medium text-gray-600">
-              <span>JORDAN BRAND</span>
-              <span>SPRING</span>
-              <span>2023</span>
-            </div>
+        {/* Subheading and Description */}
+        <div className="px-4 max-w-2xl mx-auto">
+          <h3 className="text-xl sm:text-2xl font-semibold text-black mb-4">
+            FLIGHT ESSENTIALS
+          </h3>
+          <p className="text-base sm:text-lg text-gray-700">
+            Your built-to-last, all-week wear—but with style only Jordan Brand
+            can deliver.
+          </p>
+        </div>
 
-            {/* Description */}
-            <div className="mt-4">
-              <h3 className="text-2xl font-bold text-gray-800">FLIGHT ESSENTIALS</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Your built-to-last, all-week wears — but with style only Jordan Brand can deliver.
-              </p>
-            </div>
-
-            {/* Shop Button */}
-            <div className="mt-4">
-              <a
-                href="#"
-                className="inline-block px-6 py-2 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800"
-              >
-                Shop
-              </a>
-            </div>
-          </div>
+        {/* Shop Button */}
+        <div className="mt-6">
+          <a
+            href="#shop"
+            className="bg-black text-white px-8 py-3 rounded-lg text-lg hover:bg-gray-800 transition-colors duration-300"
+          >
+            Shop Now
+          </a>
         </div>
       </div>
     </section>
