@@ -7,6 +7,7 @@ import Best from "./components/Best/page";
 import Featured from "./components/Featured/page";
 import GearUp from "./components/GearUp/page";
 import DontMissSection from "./components/DontMiss/page";
+import Essentials from "./components/EssentialsSection/page";
 
 function page() {
   return (
@@ -17,6 +18,7 @@ function page() {
       <Featured />
       <GearUp />
       <DontMissSection />
+      <Essentials />
       <Navigation />
       <Footer />
     </div>
