@@ -100,7 +100,6 @@ export default function Footer() {
             <FaTwitter />
           </div>
           <div className="text-lg cursor-pointer hover:text-gray-400">
-           
             <FaFacebook />
           </div>
           <div className="text-lg cursor-pointer hover:text-gray-400">
@@ -118,7 +117,7 @@ export default function Footer() {
         <div className="flex mb-4 md:mb-0 gap-2">
           <IoLocationOutline />
           <p>India</p>
-          <p>© 2023 Nike, Inc. All Rights Reserved</p>
+          <p>© 2023 Nike, Inc. All Rights Reserved Made by `NOMAN`</p>
         </div>
 
         {/* Links */}

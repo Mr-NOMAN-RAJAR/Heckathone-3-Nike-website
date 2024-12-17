@@ -1,27 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaHeart, FaShoppingBag } from "react-icons/fa";
-
 export default function Nav() {
   return (
     <header className="">
       {/* Top bar */}
       <div className="bg-[#fafafa] flex justify-between items-center px-6 py-2 md:text-[11px] sm:text-[9px] text-[8px] font-medium text-gray-500">
         <Image src={"/logo1.png"} alt={"logo"} width={24} height={24} />
-        <div>
-          <p className="text-black text-sm bg-white">Made by NOMAN</p>
-        </div>
+
         <div className="flex md:gap-4 sm:gap-3 gap-2">
-          <Link href="/location" className="hover:text-gray-800">
+          <Link href="/FindStore#" className="hover:text-gray-800">
             Find Link Store
           </Link>
-          <Link href="#" className="hover:text-gray-800">
+          <Link href="/Help" className="hover:text-gray-800">
             Help
           </Link>
-          <Link href="/joinus" className="hover:text-gray-800">
+          <Link href="/JoinUs" className="hover:text-gray-800">
             Join Us
           </Link>
-          <Link href="/login" className="hover:text-gray-800">
+          <Link href="/SingIn" className="hover:text-gray-800">
             Sign In
           </Link>
         </div>
@@ -36,7 +33,7 @@ export default function Nav() {
 
         {/* (Navigation Links) */}
         <nav className="flex gap-4 md:gap-6 text-gray-700 font-medium md:text-[16px] sm:text-[14px] text-[10px] ">
-          <Link href="/featured" className="hover:text-black whitespace-nowrap">
+          <Link href="/Featured" className="hover:text-black whitespace-nowrap">
             New & Featured
           </Link>
           <Link href="#" className="hover:text-black whitespace-nowrap">
