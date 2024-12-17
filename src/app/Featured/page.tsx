@@ -1,5 +1,6 @@
 import Header from "@/app/components/Header/page";
 import Footer from "@/app/components/Footer/page";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -41,7 +42,7 @@ export default function Home() {
         {/* Products Section */}
         <main className="flex-1 p-4">
           <h1 className="text-2xl font-bold mb-6">New (500)</h1>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4    gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {/* Product Card */}
             {[
               {
@@ -68,7 +69,6 @@ export default function Home() {
                 image: "/featured/shoe4.png",
                 tag: "Just In",
               },
-
               {
                 name: "Nike Air Force 1 PLATFORM",
                 price: "₹6,295.00",
@@ -108,15 +108,17 @@ export default function Home() {
             ].map((product, index) => (
               <div
                 key={index}
-                className="border-2 p-4 rounded-lg shadow hover:shadow-xl  transition"
+                className="border-2 p-4 rounded-lg shadow hover:shadow-xl transition"
               >
-                <div className="relative">
-                  <img
+                <div className="relative w-full h-40">
+                  <Image
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-40 object-contain rounded-md"
+                    layout="fill"
+                    objectFit="contain"
+                    className="rounded-md"
                   />
-                  <span className="  text-red-500 text-xs px-2 py-1 rounded">
+                  <span className="text-red-500 text-xs px-2 py-1 rounded absolute top-2 left-2">
                     {product.tag}
                   </span>
                 </div>
@@ -126,7 +128,7 @@ export default function Home() {
             ))}
           </div>
         </main>
-      </div>{" "}
+      </div>
       <Footer />
     </>
   );

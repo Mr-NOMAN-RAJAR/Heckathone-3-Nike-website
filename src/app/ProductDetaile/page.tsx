@@ -2,6 +2,7 @@ import React from "react";
 import Image from 'next/image';
 import Header from "@/app/components/Header/page";
 import Footer from "@/app/components/Footer/page";
+
 function page() {
   return (
     <>
@@ -24,10 +25,11 @@ function page() {
           <div className="p-8 flex flex-col justify-center">
             <h1 className="text-3xl font-bold text-gray-900">
               Nike Air Force 1
-            </h1> <span className="text-3xl font-bold text-gray-900">PLT.AF.ORM</span>
+            </h1>
+            <span className="text-3xl font-bold text-gray-900">PLT.AF.ORM</span>
             <p className="text-gray-600 mt-4 leading-relaxed">
               Turn style on its head with this crafted take on the Air Jordan 1
-              Mid. Its "inside out" inspired construction, including unique
+              Mid. Its &quot;inside out&quot; inspired construction, including unique
               layering and exposed foam accents, ups the ante on this timeless
               Jordan Brand silhouette. Details like the deco stitching on the
               Swoosh add coveted appeal, while the unexpected shading and rich

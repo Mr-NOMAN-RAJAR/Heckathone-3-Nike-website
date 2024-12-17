@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 function Page() {
   return (
@@ -11,27 +12,33 @@ function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Men's Section */}
           <div className="relative w-full">
-            <img
+            <Image
               src="/e1.png"
               alt="Men's"
+              width={500} // Width in pixels
+              height={300} // Height in pixels
               className="w-full h-auto object-cover rounded-lg shadow-lg"
             />
           </div>
 
           {/* Women's Section */}
           <div className="relative w-full">
-            <img
+            <Image
               src="/e2.png"
               alt="Women's"
+              width={500}
+              height={300}
               className="w-full h-auto object-cover rounded-lg shadow-lg"
             />
           </div>
 
           {/* Kids' Section */}
           <div className="relative w-full">
-            <img
+            <Image
               src="/e3.png"
               alt="Kids'"
+              width={500}
+              height={300}
               className="w-full h-auto object-cover rounded-lg shadow-lg"
             />
           </div>
