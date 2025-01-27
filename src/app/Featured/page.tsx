@@ -1,6 +1,5 @@
 "use client";
-import Header from "@/app/components/Header/page";
-import Footer from "@/app/components/Footer/page";
+
 import { FunnelIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 
 import Link from "next/link";
@@ -37,7 +36,6 @@ export default function ProductSection() {
 
   return (
     <>
-      <Header />
       <div className="flex justify-between items-center py-4 px-6 border-b border-gray-200">
         <div className="text-xl font-semibold">New (500)</div>
 
@@ -55,7 +53,6 @@ export default function ProductSection() {
           </div>
         </div>
       </div>
-
       <div className="flex">
         {/* Sidebar */}
         <aside className="w-1/5 p-4 border-r border-gray-300 bg-gray-100">
@@ -148,7 +145,6 @@ export default function ProductSection() {
           </div>
         </main>
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,22 +1,21 @@
-"use client"
+"use client";
+/* eslint-disable @next/next/no-async-client-component */
+
 import { client } from "@/sanity/lib/client";
 import { Product } from "../../../../types/productstypes";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-
-import Header from "@/app/components/Header/page";
-import Footer from "@/app/components/Footer/page";
 import Link from "next/link";
-import { MouseEvent as ReactMouseEvent } from "react";
 import Swal from "sweetalert2";
 import { addToCart } from "@/app/actions/actions";
+import { useEffect, useState } from "react";
 
 interface ProductPage {
   params: { slug: string };
 }
 
-async function getProduct(slug: string): Promise<Product> {
+const getProduct = async (slug: string): Promise<Product> => {
   return client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0]{
       _id,
@@ -31,11 +30,20 @@ async function getProduct(slug: string): Promise<Product> {
     }`,
     { slug }
   );
-}
+};
 
-export default async function Productpage({ params }: ProductPage) {
-  const { slug } = await params;
-  const product = await getProduct(slug);
+export default function ProductPage({ params }: ProductPage) {
+  const { slug } = params;
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const fetchedProduct = await getProduct(slug);
+      setProduct(fetchedProduct);
+    };
+
+    fetchProduct();
+  }, [slug]);
 
   const handleToAddCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
@@ -49,11 +57,12 @@ export default async function Productpage({ params }: ProductPage) {
     addToCart(product);
   };
 
+  if (!product) return <div>Loading...</div>;
+
   return (
     <>
-      <Header />
-      <div className="flex min-h-screen min-w-full  ">
-        <div className="grid grid-cols-1 md:grid-cols-2  bg-gray-200 shadow-2xl rounded-lg overflow-hidden w-screen p-10">
+      <div className="flex min-h-screen min-w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-200 shadow-2xl rounded-lg overflow-hidden w-screen p-10">
           {/* Product Image */}
           <div className="relative w-full h-96 md:h-auto shadow-lg bg-white">
             <Image
@@ -83,22 +92,15 @@ export default async function Productpage({ params }: ProductPage) {
               </span>
             </div>
 
-            {/* Cart Button */}
-            {/* <Link href="/Cart">
-              <button className="mt-6 bg-gray-900 text-white py-3 px-6 rounded-md hover:bg-gray-700 transition">
-                Add To Cart
-              </button>
-            </Link> */}
             <button
-              className="bg-gradient-to-tr from-slate-600 to-slate-300 font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-xl hover:scale-110 transition-transform duration-300 ease-in-out "
+              className="bg-gradient-to-tr from-slate-600 to-slate-300 font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-xl hover:scale-110 transition-transform duration-300 ease-in-out"
               onClick={(e) => handleToAddCart(e, product)}
             >
               Add To Cart
             </button>
           </div>
         </div>
-      </div>{" "}
-      <Footer />
+      </div>
     </>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import { Product } from "../../../types/productstypes";
 import { getCartItems } from "../actions/actions";
@@ -90,7 +91,7 @@ export default function ChakeOutpage() {
               How would you like to get your order?
             </h2>
             <p className="text-sm text-gray-600 mb-6">
-              Customs regulation for India requires a copy of the recipient's
+              Customs regulation for India requires a copy of the recipient&apos;s
               KYC document (e.g., Aadhaar, PAN, or Passport) to clear the
               shipment.
             </p>
@@ -239,7 +240,7 @@ export default function ChakeOutpage() {
               </div>
               <div className="space-y-4">
                 <h2 className="text-lg font-semibold">
-                  What's your contact information?
+                  What&apos;s your contact information?
                 </h2>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium">
@@ -284,7 +285,7 @@ export default function ChakeOutpage() {
                 </div>
               </div>
               <div className="space-y-4">
-                <h2 className="text-lg font-semibold">What's your PAN?</h2>
+                <h2 className="text-lg font-semibold">What&apos;s your PAN?</h2>
                 <div>
                   <label htmlFor="pan" className="block text-sm font-medium">
                     PAN

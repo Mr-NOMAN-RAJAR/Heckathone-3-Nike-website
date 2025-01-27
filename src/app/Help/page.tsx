@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../components/Header/page";
-import Footer from "../components/Footer/page";
+
 import Image from "next/image";
 
 const NikeHelp = () => {
   return (
     <>
-      <Header />
 
       <div className="bg-white text-black">
         {/* Container */}
@@ -48,7 +46,7 @@ const NikeHelp = () => {
               <p>
                 <span className=" font-semibold">Nike Members</span> can store
                 multiple debit or credit cards in their profile for faster
-                checkout. If you're not already a Member,{" "}
+                checkout. If you&apos;re not already a Member,{" "}
                 <span className=" underline cursor-pointer">join us</span>{" "}
                 today.
               </p>
@@ -81,7 +79,7 @@ const NikeHelp = () => {
                     Can I pay for my order with multiple methods?
                   </h4>
                   <p className="text-gray-600">
-                    No, payment for Nike orders can't be split between multiple
+                    No, payment for Nike orders can&apos;t be split between multiple
                     payment methods.
                   </p>
                 </div>
@@ -148,7 +146,7 @@ const NikeHelp = () => {
                     className="w-12"
                   />
                 </div>
-                <p className="font-semibold">We'll reply within</p>
+                <p className="font-semibold">We&apos;ll reply within</p>
                 <p className="text-sm">five business days</p>
               </div>
 
@@ -171,7 +169,6 @@ const NikeHelp = () => {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 };
