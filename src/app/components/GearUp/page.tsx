@@ -8,7 +8,7 @@ export default function GearUpSection() {
 
         <div className="mt-6 overflow-x-auto">
           <div className="flex gap-4">
-            <div className="min-w-[200px] border border-gray-300 rounded-md shadow-sm">
+            <div className="min-w-[200px] border border-gray-300 rounded-md shadow-sm ">
               <Image
                 src="/g1.png"
                 alt="Nike Dri-FIT ADV Techknit Ultra"
@@ -94,4 +94,4 @@ export default function GearUpSection() {
       </div>
     </section>
   );
-}
+};

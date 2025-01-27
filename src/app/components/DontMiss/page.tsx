@@ -1,8 +1,9 @@
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
 
 export default function FlightEssentialsSection() {
   return (
-    <section className="relative w-full bg-white py-16 px-4">
+    <section className="relative w-full bg-white py-16 px-4 sm:px-8">
       {/* Content Section */}
       <div className="relative z-10 text-center mt-8 sm:mt-12">
         {/* "Don't Miss" Heading */}
@@ -15,8 +16,8 @@ export default function FlightEssentialsSection() {
           <Image
             src="/DontMiss.png"
             alt="Flight Essentials"
-            width={1200} 
-            height={800} 
+            width={1200}
+            height={800}
             className="w-full h-auto object-cover rounded-lg shadow-xl"
           />
         </div>
@@ -34,12 +35,11 @@ export default function FlightEssentialsSection() {
 
         {/* Shop Button */}
         <div className="mt-6">
-          <a
-            href="#shop"
-            className="bg-black text-white px-8 py-3 rounded-lg text-lg hover:bg-gray-800 transition-colors duration-300"
-          >
-            Shop Now
-          </a>
+          <Link href={`/Featured`}>
+            <button className="bg-black text-white px-8 py-3 rounded-full text-lg hover:bg-gray-800  hover:shadow-xl transition duration-200 transform hover:scale-105">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </div>
     </section>

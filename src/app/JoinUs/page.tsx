@@ -12,12 +12,7 @@ function join() {
         <div className="w-full max-w-md bg-white p-8 border border-gray-300 rounded-md shadow-md">
           {/* Nike Logo */}
           <div className="flex justify-center mb-6">
-            <Image
-              src="/logo2.png"
-              alt="Nike Logo"
-              width={32} // Adjust width as needed
-              height={32} // Adjust height as needed
-            />
+            <Image src="/logo2.png" alt="Nike Logo" width={32} height={32} />
           </div>
 
           {/* Heading */}
@@ -112,7 +107,6 @@ function join() {
                 Female
               </button>
             </div>
-
             {/* Email Updates */}
             <div className="flex items-center space-x-2 mb-6">
               <input type="checkbox" className="h-4 w-4 text-black" />
@@ -125,7 +119,7 @@ function join() {
             {/* Join Us Button */}
             <button
               type="submit"
-              className="w-full py-2 bg-black text-white rounded-md font-medium hover:bg-gray-800 transition"
+              className="w-full py-2 bg-black text-white rounded-md font-medium hover:shadow-xl transition duration-200 transform hover:scale-105"
             >
               JOIN US
             </button>

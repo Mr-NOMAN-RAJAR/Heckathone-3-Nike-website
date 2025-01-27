@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/app/components/Header/page";
 import Footer from "@/app/components/Footer/page";
-import Image from "next/image"; 
+import Image from "next/image";
 
 function page() {
   return (
@@ -14,11 +14,11 @@ function page() {
           {/* Nike Logo */}
           <div className="flex justify-center mb-6">
             <Image
-              src="/logo2.png" 
+              src="/logo2.png"
               alt="Nike Logo"
-              width={32} 
-              height={32} 
-              className="h-8" 
+              width={32}
+              height={32}
+              className="h-8"
             />
           </div>
 
@@ -74,7 +74,7 @@ function page() {
           {/* Footer */}
           <div className="text-center text-sm text-gray-600 mt-6">
             <p>
-              By logging in, you agree to Nike&apos;s 
+              By logging in, you agree to Nike&apos;s
               <a href="#" className="text-black underline">
                 Privacy Policy
               </a>

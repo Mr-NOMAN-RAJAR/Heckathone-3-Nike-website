@@ -5,21 +5,27 @@ export default function Nav() {
   return (
     <header className="">
       {/* Top bar */}
-      <div className="bg-[#fafafa] flex justify-between items-center px-6 py-2 md:text-[11px] sm:text-[9px] text-[8px] font-medium text-gray-500">
+      <div className=" flex justify-between items-center px-7 py-2 md:text-[11px] sm:text-[9px] text-[8px] font-medium text-gray-500 ">
         <Image src={"/logo1.png"} alt={"logo"} width={24} height={24} />
 
-        <div className="flex md:gap-4 sm:gap-3 gap-2">
-          <Link href="/FindStore#" className="hover:text-gray-800">
+        <div className="flex gap-6">
+          <Link
+            href="/FindStore#"
+            className="hover:text-gray-800 hover:underline"
+          >
             Find Link Store
           </Link>
-          <Link href="/Help" className="hover:text-gray-800">
-            Help
+          <Link href="/Help" className="hover:text-gray-800 hover:underline">
+            {" "}
+            | Help
           </Link>
-          <Link href="/JoinUs" className="hover:text-gray-800">
-            Join Us
+          <Link href="/JoinUs" className="hover:text-gray-800 hover:underline">
+            {" "}
+            | Join Us
           </Link>
-          <Link href="/SingIn" className="hover:text-gray-800">
-            Sign In
+          <Link href="/SingIn" className="hover:text-gray-800 hover:underline">
+            {" "}
+            | Sign In
           </Link>
         </div>
       </div>
@@ -27,8 +33,8 @@ export default function Nav() {
       {/* Main navigation */}
       <div className="flex flex-wrap justify-between items-center px-6 py-4">
         {/* Left section (Logo) */}
-        <div className="flex items-center">
-          <Image src={"/logo2.png"} alt="Nike Logo" width={35} height={35} />
+        <div className="flex items-center sm:w-80">
+          <Image src={"/logo2.png"} alt="Nike Logo" width={50} height={50} />
         </div>
 
         {/* (Navigation Links) */}
@@ -56,22 +62,23 @@ export default function Nav() {
         {/* (Search, Wishlist, Cart) */}
         <div className="flex items-center gap-4 mt-4 md:mt-0">
           {/* Search Bar */}
-          <div className="relative hidden md:block">
+          <div className="relative hidden md:block ">
             <input
               type="text"
               placeholder="Search"
-              className="border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none"
+              className=" hover:shadow-sm transition duration-300 transform hover:scale-105 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none"
             />
-            <span className="absolute right-3 top-2.5 text-gray-500">
+            <span className="absolute right-3 top-2.5 text-gray-500 ">
               <FaSearch />
             </span>
           </div>
           <span className="text-gray-700 md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] w-[16px] h-[16px] cursor-pointer hover:text-black">
-            <FaHeart />
+            <FaHeart className=" size-5 hover:shadow-xl transition duration-300 transform hover:scale-125" />
           </span>
-          <span className="text-gray-700 md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] w-[16px] h-[16px] cursor-pointer hover:text-black">
-            <FaShoppingBag />
-          </span>
+          <Link href={`/Cart`}>
+          <span className="text-gray-700 md:w-[28px] md:h-[28px] sm:w-[20px] sm:h-[20px] w-[16px] h-[16px] cursor-pointer hover:text-black">
+            <FaShoppingBag className="size-5 hover:shadow-xl transition duration-300 transform hover:scale-125" />
+          </span></Link>
         </div>
       </div>
 

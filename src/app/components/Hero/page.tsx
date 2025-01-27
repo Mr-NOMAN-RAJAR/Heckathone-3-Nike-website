@@ -2,15 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 export default function Hero() {
   return (
-    <section className="flex justify-center flex-col items-center bg-[#fafafa] m-4 ">
+    <section className="flex justify-center flex-col items-center bg-[#fafafa] my-4 ">
       <div className="flex justify-center flex-col items-center pb-4">
-        <h3 className="text-xl text-black font-bold">Hello Nike App</h3>
+        <h3 className="text-2xl text-black font-bold">Hello Nike App</h3>
         <p className="text-sm text-gray-600">
           <span>Download the app to access everything Nike.</span>
           <Link href={"/"}> Get Your Great</Link>
         </p>
       </div>
-      <Image src={"/Hero.png"} alt={"shoes"} width={1344} height={700} />
+      <Image src={"/Hero.png"} alt={"shoes"} width={1432} height={700} />
       <div
         className="flex justify-center items-center flex-col p-10 text-center
             "
@@ -26,12 +26,14 @@ export default function Hero() {
           max.
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-6">
-          <button className="bg-black text-white rounded-full py-2 px-6 sm:px-8 md:px-10 lg:px-12">
+          <button className="bg-black text-white rounded-full py-2 px-6 sm:px-8 md:px-10 lg:px-12  hover:shadow-xl transition duration-300 transform hover:scale-105">
             Notify Me
           </button>
-          <button className="bg-black text-white rounded-full py-2 px-6 sm:px-8 md:px-10 lg:px-12">
-            Shop Air Max
-          </button>
+          <Link href={"/Featured"}>
+            <button className="bg-black text-white rounded-full py-2 px-6 sm:px-8 md:px-8   hover:shadow-xl transition duration-300 transform hover:scale-105">
+              Shop Air Max
+            </button>
+          </Link>
         </div>
       </div>
     </section>
