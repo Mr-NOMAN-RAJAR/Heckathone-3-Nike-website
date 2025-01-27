@@ -1,5 +1,7 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { ReactNode } from 'react';
 export interface Product {
-    size: ReactI18NextChildren | Iterable<ReactI18NextChildren>;
+    size: ReactNode | Iterable<ReactNode>;
     imageUrl: string | StaticImport;
     name: string;
     _id: string;
