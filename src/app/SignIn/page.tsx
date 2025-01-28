@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function page() {
   return (
@@ -80,10 +81,10 @@ function page() {
               </a>
             </p>
             <p className="mt-4">
-              Not a Member?
-              <a href="#" className="text-black font-medium underline">
+              Not a Member? <Link
+               href="JoinUs" className="text-black font-medium underline">
                 Join Us
-              </a>
+              </Link>
             </p>
           </div>
         </div>

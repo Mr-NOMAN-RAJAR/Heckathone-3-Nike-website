@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function join() {
   return (
     <div>
-      
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         {/* Card Container */}
         <div className="w-full max-w-md bg-white p-8 border border-gray-300 rounded-md shadow-md">
@@ -135,15 +135,13 @@ function join() {
           </p>
 
           <p className="text-center text-sm text-gray-600 mt-4">
-            Already a Member?
-            <a href="/JoinUs" className="text-black font-medium underline">
+            Already a Member?{" "}
+            <Link href="/SignIn" className="text-black font-medium underline">
               Sign In
-            </a>
+            </Link>
           </p>
         </div>
       </div>
-
-      
     </div>
   );
 }

@@ -1,8 +1,12 @@
+"use client";
+import { FaSearch, FaHeart, FaShoppingBag } from "react-icons/fa";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaSearch, FaHeart, FaShoppingBag } from "react-icons/fa";
 
 export default function Nav() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="w-full bg-white shadow-md">
       {/* Top bar */}
@@ -10,9 +14,9 @@ export default function Nav() {
         <Image src={"/logo1.png"} alt={"logo"} width={24} height={24} />
 
         <div className="flex gap-4 sm:gap-6">
-          <Link href="/FindStore#" className="hover:text-gray-800 hover:underline">
+          <span className="hover:text-gray-800 hover:underline">
             Find Link Store
-          </Link>
+          </span>
           <Link href="/Help" className="hover:text-gray-800 hover:underline">
             | Help
           </Link>

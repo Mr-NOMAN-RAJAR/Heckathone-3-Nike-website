@@ -1,6 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const NikeHelp = () => {
   return (
@@ -53,9 +54,9 @@ const NikeHelp = () => {
 
               {/* Buttons */}
               <div className="flex space-x-4 my-6">
-                <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">
+               <Link href={`/JoinUs`}> <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">
                   JOIN US
-                </button>
+                </button></Link>
                 <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">
                   SHOP NIKE
                 </button>
