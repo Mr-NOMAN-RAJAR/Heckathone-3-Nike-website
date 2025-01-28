@@ -1,7 +1,6 @@
 "use client";
 
 import { FunnelIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
-
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -13,14 +12,27 @@ import { urlFor } from "@/sanity/lib/image";
 import { addToCart } from "../actions/actions";
 
 export default function ProductSection() {
-  const [product, setProduct] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [sortOption, setSortOption] = useState<string>("");
+
   useEffect(() => {
-    async function fetchproducts() {
-      const fetchedProduct: Product[] = await client.fetch(allProducts);
-      setProduct(fetchedProduct);
+    async function fetchProducts() {
+      const fetchedProducts: Product[] = await client.fetch(allProducts);
+      setProducts(fetchedProducts);
     }
-    fetchproducts();
+    fetchProducts();
   }, []);
+
+  const handleSort = (option: string) => {
+    setSortOption(option);
+    let sortedProducts = [...products];
+    if (option === "low-to-high") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (option === "high-to-low") {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    }
+    setProducts(sortedProducts);
+  };
 
   const handleToAddCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
@@ -36,8 +48,9 @@ export default function ProductSection() {
 
   return (
     <>
-      <div className="flex justify-between items-center py-4 px-6 border-b border-gray-200">
-        <div className="text-xl font-semibold">New (500)</div>
+      {/* Header Section */}
+      <div className="flex justify-between items-center py-4 px-6 border-b border-gray-200 bg-gray-50">
+        <div className="text-xl font-semibold">New Products ({products.length})</div>
 
         <div className="flex gap-4 items-center">
           <button className="text-gray-600 hover:text-black flex items-center">
@@ -46,31 +59,41 @@ export default function ProductSection() {
           </button>
 
           <div className="relative">
-            <button className="text-gray-600 hover:text-black flex items-center">
-              Sort By
-              <ChevronDownIcon className="w-4 h-4 ml-1" />
-            </button>
+            <select
+              className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-2"
+              onChange={(e) => handleSort(e.target.value)}
+              value={sortOption}
+            >
+              <option value="" disabled>
+                Sort By
+              </option>
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
+            </select>
           </div>
         </div>
       </div>
+
+      {/* Main Section */}
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-1/5 p-4 border-r border-gray-300 bg-gray-100">
+        <aside className="hidden md:block w-1/5 p-4 border-r border-gray-300 bg-gray-100">
           <ul>
             <li className="mb-4">
+              <h3 className="font-semibold">Categories</h3>
               <ul className="pl-4 text-gray-600">
                 <li>Shoes</li>
                 <li>Sports Bra</li>
-                <li>Tops & T-Shirts </li>
+                <li>Tops & T-Shirts</li>
                 <li>Hoodies & Sweatshirts</li>
                 <li>Jackets</li>
                 <li>Trousers & Tights</li>
                 <li>Shorts</li>
                 <li>Tracksuits</li>
-                <li>Jumpsuite & Rompers</li>
+                <li>Jumpsuits & Rompers</li>
                 <li>Skirts & Dresses</li>
-                <li>socks</li>
-                <li>Accessories & eqipment </li>
+                <li>Socks</li>
+                <li>Accessories & Equipment</li>
               </ul>
             </li>
             <li className="mb-4">
@@ -94,9 +117,9 @@ export default function ProductSection() {
 
         {/* Products Section */}
         <main className="flex-1 p-4 bg-gray-200">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4  gap-4 bg-gray-200">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 bg-gray-200">
             {/* Product Card */}
-            {product.map(
+            {products.map(
               (product, index) =>
                 product.slug && (
                   <Link
@@ -105,7 +128,7 @@ export default function ProductSection() {
                   >
                     <div
                       key={index}
-                      className="border-2 rounded-lg  shadow-md  bg-white hover:shadow-xl transition duration-300 transform hover:scale-105"
+                      className="border rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
                     >
                       <div className="relative w-full h-48">
                         <Image
@@ -113,11 +136,11 @@ export default function ProductSection() {
                           alt={product.productName}
                           layout="fill"
                           objectFit="cover"
-                          className="rounded-md  w-[348px] h-[348px]"
+                          className="rounded-t-lg"
                         />
                       </div>
-                      <div className=" p-4">
-                        <p className="my-1  text-red-500 text-xs font-semibold rounded">
+                      <div className="p-4">
+                        <p className="my-1 text-red-500 text-xs font-semibold">
                           {product.tag}
                         </p>
                         <h3 className="font-medium line-clamp-1">
@@ -127,11 +150,11 @@ export default function ProductSection() {
                           {product.description}
                         </p>
                         <p className="my-1 text-gray-700">{product.gender}</p>
-                        <p className=" mb-4 text-gray-700">{product.color}</p>
+                        <p className="mb-4 text-gray-700">{product.color}</p>
                         <div className="flex justify-between items-center">
-                          <p>Price : {product.price}</p>
+                          <p className="font-bold">₹{product.price}</p>
                           <button
-                            className="bg-black/80 hover:bg-black text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-xl "
+                            className="bg-gradient-to-t from-green-600 to-green-400 text-white font-bold py-2 px-4 rounded-lg shadow-md"
                             onClick={(e) => handleToAddCart(e, product)}
                           >
                             Add To Cart

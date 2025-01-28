@@ -1,6 +1,8 @@
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { ReactNode } from 'react';
 export interface Product {
+    [x: string]: number;
+    category: any;
     size: ReactNode | Iterable<ReactNode>;
     imageUrl: string | StaticImport;
     name: string;
