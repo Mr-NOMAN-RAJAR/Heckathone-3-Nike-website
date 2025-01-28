@@ -11,7 +11,8 @@ export const addToCart = (Product: Product) => {
   } else {
     cart.push({
       ...Product, 
-      inventory: 1,
+      inventory : 1,
+      size: Product.size ?? 0,
     });
   }
   localStorage.setItem("cart", JSON.stringify(cart));
