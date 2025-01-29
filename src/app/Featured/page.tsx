@@ -10,10 +10,12 @@ import { client } from "@/sanity/lib/client";
 import { allProducts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { addToCart } from "../actions/actions";
+import filters from "../filters";
 
 export default function ProductSection() {
   const [products, setProducts] = useState<Product[]>([]);
   const [sortOption, setSortOption] = useState<string>("");
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -34,6 +36,36 @@ export default function ProductSection() {
     setProducts(sortedProducts);
   };
 
+  const handleFilterChange = (value: string) => {
+    setSelectedFilters((prev) => {
+      if (prev.includes(value)) {
+        return prev.filter((filter) => filter !== value);
+      } else {
+        return [...prev, value];
+      }
+    });
+  };
+
+  const filteredProducts = products.filter((product) => {
+    if (selectedFilters.length === 0) return true;
+    return selectedFilters.some((filter) => {
+      if (filters[0].options.find((opt) => opt.value === filter)) {
+        return product.gender === filter;
+      }
+      if (filters[1].options.find((opt) => opt.value === filter)) {
+        const priceRange = filter.split("-").map(Number);
+        if (priceRange.length === 2) {
+          return (
+            product.price >= priceRange[0] && product.price <= priceRange[1]
+          );
+        } else if (filter === "under-5000") {
+          return product.price < 5000;
+        }
+      }
+      return false;
+    });
+  });
+
   const handleToAddCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
     Swal.fire({
@@ -50,7 +82,9 @@ export default function ProductSection() {
     <>
       {/* Header Section */}
       <div className="flex justify-between items-center py-4 px-6 border-b border-gray-200 bg-gray-50">
-        <div className="text-xl font-semibold">New Products ({products.length})</div>
+        <div className="text-xl font-semibold">
+          New Products ({filteredProducts.length})
+        </div>
 
         <div className="flex gap-4 items-center">
           <button className="text-gray-600 hover:text-black flex items-center">
@@ -96,22 +130,42 @@ export default function ProductSection() {
                 <li>Accessories & Equipment</li>
               </ul>
             </li>
-            <li className="mb-4">
-              <h3 className="font-semibold">Gender</h3>
-              <ul className="pl-4 text-gray-600">
-                <li>Men</li>
-                <li>Women</li>
-                <li>Unisex</li>
-              </ul>
-            </li>
-            <li>
-              <h3 className="font-semibold">Shop By Price</h3>
-              <ul className="pl-4 text-gray-600">
-                <li>Under ₹5,000</li>
-                <li>₹5,000 - ₹10,000</li>
-                <li>₹10,000 - ₹20,000</li>
-              </ul>
-            </li>
+            {filters.map(
+              (filterCategory: {
+                category:
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.Key
+                  | null
+                  | undefined;
+                options: any[];
+              }) => (
+                <li key={String(filterCategory.category)} className="mb-4">
+                  <h3 className="font-semibold">
+                    {String(filterCategory.category)}
+                  </h3>
+                  <ul className="pl-4 text-gray-600">
+                    {filterCategory.options.map((option) => (
+                      <li key={option.value}>
+                        <label>
+                          <input
+                            type="checkbox"
+                            className="mr-2"
+                            value={option.value}
+                            onChange={() => handleFilterChange(option.value)}
+                          />
+                          {option.label}
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )
+            )}
           </ul>
         </aside>
 
@@ -119,7 +173,7 @@ export default function ProductSection() {
         <main className="flex-1 p-4 bg-gray-200">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 bg-gray-200">
             {/* Product Card */}
-            {products.map(
+            {filteredProducts.map(
               (product, index) =>
                 product.slug && (
                   <Link

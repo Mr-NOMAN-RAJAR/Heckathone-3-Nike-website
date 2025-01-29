@@ -11,6 +11,7 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { IoIosArrowForward } from "react-icons/io";
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
@@ -94,6 +95,16 @@ export default function CartPage() {
   return (
     <div className="bg-gray-100 min-h-screen p-4">
       {/* Free Delivery Banner */}
+      <nav className="flex items-center gap-2 pt-4 pl-6 bg-gray-50 py-4">
+        <Link
+          href={"\/"}
+          className="text-[#666666] hover:text-black transition text-sm"
+        >
+          Home
+        </Link>
+        <IoIosArrowForward />
+        <span>Cart</span>
+      </nav>
       <div className="bg-white p-4 text-center text-sm border-b border-gray-200">
         <p>
           Free Delivery{" "}
@@ -221,7 +232,7 @@ export default function CartPage() {
               <p>₹{calculateTotal()}</p>
             </div>
           </div>
-          <Link href={"/ChakeOut"}> 
+          <Link href={"/ChakeOut"}>
             {" "}
             <button
               className="bg-white text-black w-full py-2 mt-4 rounded-lg hover:bg-gray-300 transition"
@@ -230,7 +241,7 @@ export default function CartPage() {
               Member Checkout
             </button>
           </Link>
-        </div> 
+        </div>
       </div>
     </div>
   );
