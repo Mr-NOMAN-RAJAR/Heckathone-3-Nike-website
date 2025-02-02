@@ -1,18 +1,18 @@
 "use client";
-/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import { Product } from "../../../types/productstypes";
 import { getCartItems } from "../actions/actions";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-import { CogIcon } from "@heroicons/react/16/solid";
 import { IoIosArrowForward } from "react-icons/io";
+import { client } from "@/sanity/lib/client";
+import Swal from "sweetalert2";
 
 export default function ChakeOutpage() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [discount, setDiscount] = useState<number>(0);
-  const [formValues, setfromValuse] = useState({
+  const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -34,6 +34,7 @@ export default function ChakeOutpage() {
     city: false,
     country: false,
   });
+
   useEffect(() => {
     setCartItems(getCartItems());
     const appliedDiscount = localStorage.getItem("appliedDiscount");
@@ -41,16 +42,19 @@ export default function ChakeOutpage() {
       setDiscount(Number(appliedDiscount));
     }
   }, []);
+
   const Subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.inventory,
     0
   );
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setfromValuse({
+    setFormValues({
       ...formValues,
       [e.target.id]: e.target.value,
     });
   };
+
   const validateForm = () => {
     const error = {
       firstName: !formValues.firstName,
@@ -68,10 +72,65 @@ export default function ChakeOutpage() {
   };
 
   const handlePlaceOrder = () => {
-    if (validateForm()) {
-      localStorage.removeItem("appliedDiscount");
-    }
+    Swal.fire({
+      title: "Processing Your Order...",
+      text: "Please wait a moment",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Proceed",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (validateForm()) {
+          localStorage.removeItem("appliedDiscount");
+          const orderData = {
+            _type: "order",
+            firstName: formValues.firstName,
+            lastName: formValues.lastName,
+            email: formValues.email,
+            phone: formValues.phone,
+            address1: formValues.address1,
+            address2: formValues.address2,
+            zipCode: formValues.zipCode,
+            city: formValues.city,
+            country: formValues.country,
+            cartItem: cartItems.map((item) => ({
+              _type: "reference",
+              _ref: item._id,
+            })),
+            orderItems: cartItems.map((item) => ({
+              _type: "reference",
+              _ref: item._id,
+            })),
+            total: Subtotal,
+            discount: discount,
+            orderDate: new Date().toISOString(),
+          };
+          try {
+            client.create(orderData);
+            Swal.fire(
+              "Success!",
+              "Your order has been successfully processed.",
+              "success"
+            );
+          } catch (error) {
+            console.error("Error creating order", error);
+            Swal.fire("Error", "There was an error processing your order.", "error");
+          }
+        } else {
+          Swal.fire(
+            "Error",
+            "Please fill in all the fields before proceeding.",
+            "error"
+          );
+        }
+      }
+    });
   };
+
+  const total = Subtotal - discount;
+
   return (
     <>
       {/* Navigation */}
@@ -213,7 +272,7 @@ export default function ChakeOutpage() {
 
               {/* Submit Button */}
               <button
-                type="submit"
+                type="button"
                 onClick={handlePlaceOrder}
                 className="w-full bg-blue-600 text-white py-3 rounded-lg shadow hover:bg-blue-700 focus:ring-4 focus:ring-blue-500"
               >
@@ -223,7 +282,6 @@ export default function ChakeOutpage() {
           </div>
 
           {/* Right Section */}
-
           <div className="bg-white shadow-md rounded-lg p-8">
             <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
 
